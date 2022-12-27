@@ -8,7 +8,7 @@ Built with Node.js and Open AI
 ## Installation
 For automatic installation, just simply run the `install.sh` file.
 ```bash
-./install.sh
+> ./install.sh
 ```
 However, if you prefer manual installation, you can run:
 ```bash
@@ -19,4 +19,14 @@ However, if you prefer manual installation, you can run:
 > cp .env.example .env
 ```
 
-After that, you must put your OpenAI API Key in the `.env` file.
+Lastly, put your OpenAI API Key in the `.env` file.
+
+## Start the application.
+1. Create `app.js` in the root folder and put the code below:
+```javascript
+import Robo from './src/robo.js';
+
+Robo.startChatting();
+```
+2. Run `npm start` in console.
+3. Enjoy!
