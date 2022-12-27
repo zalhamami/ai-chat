@@ -1,2 +1,2 @@
-# ai-chat
-Built with Open AI
+# Robo
+Built with Node.js and Open AI
