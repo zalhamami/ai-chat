@@ -11,15 +11,20 @@ const openAI = new OpenAIApi(config);
 const Robo = {
     user: 'Human',
     responder: 'Robo',
+    context: '',
     options: {
         model: 'text-davinci-003',
         prompt: '',
         temperature: 0.9,
-        max_tokens: 800,
+        max_tokens: 150,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0.6,
         stop: []
+    },
+    initContext: function () {
+        this.context = `The following is a conversation with an AI assistant named ${this.responder}. The assistant is helpful, creative, clever, and very friendly.\n`;
+        return this;
     },
     setUser: function (user) {
         this.user = user;
@@ -63,7 +68,7 @@ const Robo = {
         const input = Prompt();
         this.showIntroduction(input);
         
-        let conversation = '';
+        let conversation = this.initContext().context;
         while (true) {
             const question = input(`${this.user}: `);
             if (question.toString().toLowerCase() == 'bye') {
