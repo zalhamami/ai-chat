@@ -21,7 +21,7 @@ However, if you prefer manual installation, you can run:
 
 Lastly, put your OpenAI API Key in the `.env` file.
 
-## Start the application.
+## Start the application
 1. Create `app.js` in the root folder and put the code below:
 ```javascript
 import Robo from './src/robo.js';
