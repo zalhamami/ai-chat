@@ -1,3 +1,3 @@
-import Robo from './src/robo.js';
+import Robo from '../src/robo.js';
 
 Robo.startChatting();
