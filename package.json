@@ -1,17 +1,21 @@
 {
-  "name": "ai-chat",
-  "type": "module",
+  "name": "robo",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "ts-node app.ts"
   },
   "author": "Farizal Hamami",
   "license": "ISC",
   "dependencies": {
+    "@types/prompt-sync": "^4.2.0",
     "dotenv": "^16.0.3",
     "openai": "^3.1.0",
     "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "ts-node": "^10.9.1"
   }
 }

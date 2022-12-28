@@ -4,6 +4,7 @@ echo "[Install] Robo"
 echo
 
 echo "Installing all packages.."
+npm install -g typescript
 npm install --unsafe-perm=true --allow-root
 echo
 
