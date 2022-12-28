@@ -46,10 +46,10 @@ const Robo = {
         Object.assign(this.options, options);
         return this;
     },
-    userMessage: function (message) {
+    userMessage: function (message = '') {
         return `${this.user}: ${message}`;
     },
-    responderMessage: function (message) {
+    responderMessage: function (message = '') {
         return `${this.responder}: ${message}`;
     },
     showIntroduction: function (input) {
@@ -69,17 +69,24 @@ const Robo = {
         this.showIntroduction(input);
         
         let conversation = this.initContext().context;
+        const preReply = '\n' + this.responderMessage();
         while (true) {
-            const question = input(`${this.user}: `);
-            if (question.toString().toLowerCase() == 'bye') {
+            const request = input(`${this.user}: `);
+            const cleanRequest = request.toString().toLowerCase();
+            if (cleanRequest == 'bye') {
                 TypeWriter.write('\n' + this.responderMessage('Goodbye!'));
                 break;
             }
 
-            conversation += '\n' + this.userMessage(question);
-            TypeWriter.write('\n' + this.responderMessage('....'));
+            TypeWriter.write(preReply);
+            conversation += '\n' + this.userMessage(request) + preReply;
 
-            const response = await this.getResponse(conversation);
+            let response;
+            if (cleanRequest.includes('generate image')) {
+                response = await this.generateImage(request);
+            } else {
+                response = await this.getResponse(conversation);
+            }
             conversation += response;
             
             console.log(response + '\n');
@@ -89,8 +96,24 @@ const Robo = {
         this.options.prompt = conversation;
         this.options.stop = [` ${this.user}:`, ` ${this.responder}:`];
         
-        const response = await openAI.createCompletion(this.options);
-        return response.data.choices[0] ? response.data.choices[0].text : 'Failed to understand. Try again.';
+        try {
+            const response = await openAI.createCompletion(this.options);
+            return response.data.choices[0] ? response.data.choices[0].text : 'Failed to understand. Try again.';
+        } catch (err) {
+            return err;
+        }
+    },
+    generateImage: async function (request, size = '256x256') {
+        try {
+            const response = await openAI.createImage({
+                n: 1,
+                prompt: request,
+                size: size
+            });
+            return response.data.data[0] ? response.data.data[0].url : '';
+        } catch (err) {
+            return err;
+        }
     }
 }
 
