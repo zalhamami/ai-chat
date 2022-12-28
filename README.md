@@ -1,9 +1,9 @@
 # Robo
-Built with Node.js and Open AI
+A personal assistant, built with Typescript, Node.js and Open AI
 
 ## Requirements
-- NPM Installed. Here is an installation guide https://kinsta.com/blog/how-to-install-node-js/
-- OpenAI API Key. Get here https://beta.openai.com/account/api-keys
+- **NPM (Node Package Manager)**. [Installation Guide](https://kinsta.com/blog/how-to-install-node-js/)
+- **OpenAI API Key**. [Get API Key](https://beta.openai.com/account/api-keys)
 
 ## Installation
 For automatic installation, just simply run the `install.sh` file.
@@ -12,6 +12,9 @@ For automatic installation, just simply run the `install.sh` file.
 ```
 However, if you prefer manual installation, you can run:
 ```bash
+# Install typescript
+> npm install -g typescript
+
 # Install the necessary packages
 > npm install
 
@@ -22,11 +25,11 @@ However, if you prefer manual installation, you can run:
 Lastly, put your OpenAI API Key in the `.env` file.
 
 ## Start the application
-1. Create `app.js` in the root folder and put the code below:
+1. Create `app.ts` in the root folder and put the code below:
 ```javascript
-import Robo from './src/robo.js';
+import Robo from './src';
 
 Robo.startChatting();
 ```
-2. Run `npm start` in console.
+2. Run `npm start robo` in console.
 3. Enjoy!
