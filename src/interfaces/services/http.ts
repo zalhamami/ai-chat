@@ -10,4 +10,4 @@ export default interface HttpServiceInteface {
     ): Promise<any>;
 }
 
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'delete';
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
