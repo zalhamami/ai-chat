@@ -1,5 +1,6 @@
 import { request } from "http";
 import { HttpMethod } from "../interfaces/services/http";
+import UnsplashPhoto from "../interfaces/unsplash/photo";
 import HttpService from "./http";
 
 const UnsplashService = {
@@ -20,26 +21,23 @@ const UnsplashService = {
             );
     },
 
-    bulidRequest(path: string, query: string): string{
+    buildQuery(path: string, query: string): string {
         return `${path}?query=${query}&client_id=${this._api.accessToken}`
     },
 
-    async getPhoto(query: string) {
-        const resource = this.bulidRequest('search/photos', query);
+    async getPhoto(query: string): Promise<UnsplashPhoto|undefined> {
+        const resource = this.buildQuery('search/photos', query);
         const photo = await this._request(resource);
 
         if (!photo) return;
         if (photo.results.length === 0) return;
-        const response =  {
+        return  {
             id: photo.results[0].id,
             description: photo.results[0].description,
             alt_description: photo.results[0].alt_description,
             url: photo.results[0].url,
             links: photo.results[0].links
         };
-
-        console.log(response);
-        
     }
 }
 
