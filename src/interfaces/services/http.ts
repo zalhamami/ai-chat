@@ -7,5 +7,5 @@ export default interface HttpServiceInteface {
         resource: string,
         method: string,
         body?: any
-    ): Promise<T>;
+    ): Promise<any>;
 }
