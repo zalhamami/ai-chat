@@ -5,7 +5,7 @@ import {
     CreateImageRequestSizeEnum
 } from 'openai';
 import ChatInterface from '../interfaces/chat';
-import OpenAIServiceInterface from '../interfaces/openai';
+import OpenAIServiceInterface from '../interfaces/services/openai';
 
 const config: Configuration = new Configuration({
     apiKey: process.env.OPEN_AI_API_KEY

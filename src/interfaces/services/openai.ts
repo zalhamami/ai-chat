@@ -2,7 +2,7 @@ import {
     CreateCompletionRequest,
     CreateImageRequestSizeEnum
 } from 'openai';
-import ChatInterface from './chat';
+import ChatInterface from '../chat';
 
 export default interface OpenAIServiceInterface {
     getConversation(
