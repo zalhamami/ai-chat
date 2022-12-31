@@ -4,4 +4,5 @@ export default interface ChatInterface {
     context: string;
     conversation: string;
     lastRequest: string;
+    lastResponse?: string;
 }

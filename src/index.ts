@@ -14,7 +14,8 @@ const Robo: RoboInterface = {
         responder: 'Robo',
         context: '',
         conversation: '',
-        lastRequest: ''
+        lastRequest: '',
+        lastResponse: ''
     },
     options: {
         model: 'text-davinci-003',
@@ -90,9 +91,7 @@ const Robo: RoboInterface = {
                 this.userMessage(this.chat.lastRequest) + preReply;
 
             response = await Service.callServiceByRequest(this.chat, this.options);
-            this.chat.conversation += response;
-            
-            console.log(response + '\n');
+            this.handleResponse(response);
         }
     },
     async checkIfAnyStopCondition(request: string): Promise<void> {
@@ -101,8 +100,17 @@ const Robo: RoboInterface = {
             await Utils.sleep(1500);
             process.exit();
         }
+    },
+    handleResponse(response: string): void {
+        this.chat.conversation += response;
+
+        if (!this.chat.lastRequest.includes('~~')) {
+            this.chat.lastResponse = '';
+        }
+        this.chat.lastResponse += response;
+        
+        console.log(response + '\n');
     }
-    
 }
 
 export default Robo;

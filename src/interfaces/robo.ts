@@ -17,4 +17,5 @@ export default interface RoboInterface {
     showIntroduction(input: Prompt): void;
     startChatting(): Promise<void>;
     checkIfAnyStopCondition(request: string): Promise<void>;
+    handleResponse(response: string): void;
 }
