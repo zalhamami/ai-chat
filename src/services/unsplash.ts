@@ -1,4 +1,3 @@
-import { request } from "http";
 import { HttpMethod } from "../interfaces/services/http";
 import UnsplashPhoto from "../interfaces/unsplash/photo";
 import HttpService from "./http";
@@ -29,8 +28,7 @@ const UnsplashService = {
         const resource = this.buildQuery('search/photos', query);
         const photo = await this._request(resource);
 
-        if (!photo) return;
-        if (photo.results.length === 0) return;
+        if (!photo || photo.results.length === 0) return;
         return  {
             id: photo.results[0].id,
             description: photo.results[0].description,
