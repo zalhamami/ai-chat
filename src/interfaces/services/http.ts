@@ -5,7 +5,9 @@ export default interface HttpServiceInteface {
     setAuthorization(key: string): HttpServiceInteface;
     makeRequest(
         resource: string,
-        method: string,
+        method: HttpMethod,
         body?: any
     ): Promise<any>;
 }
+
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'delete';

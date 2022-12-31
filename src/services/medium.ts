@@ -1,5 +1,6 @@
 import MediumStory from "../interfaces/medium/story";
 import MediumUser from "../interfaces/medium/user";
+import { HttpMethod } from "../interfaces/services/http";
 import MediumServiceInterface from "../interfaces/services/medium";
 import HttpService from "./http";
 
@@ -12,13 +13,13 @@ const MediumService: MediumServiceInterface = {
     getAPIUrl(): string {
         return `${this._api.baseUrl}/${this._api.version}/`;
     },
-    getAuthorization(): string {
+    getAccessToken(): string {
         return `Bearer ${this._api.accessToken}`;
     },
-    async _request(resource: string, method: string = 'GET', requestBody?: any): Promise<any> {
+    async _request(resource: string, method: HttpMethod = 'GET', requestBody?: any): Promise<any> {
         return await HttpService
             .setBaseUrl(this.getAPIUrl())
-            .setAuthorization(this.getAuthorization())
+            .setAuthorization(this.getAccessToken())
             .makeRequest(
                 resource, method, requestBody
             );

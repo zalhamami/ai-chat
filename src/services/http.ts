@@ -1,5 +1,5 @@
 import axios from "axios";
-import HttpServiceInteface from "../interfaces/services/http";
+import HttpServiceInteface, { HttpMethod } from "../interfaces/services/http";
 
 const HttpService: HttpServiceInteface = {
     _baseUrl: null,
@@ -12,7 +12,7 @@ const HttpService: HttpServiceInteface = {
         this._authorization = key;
         return this;
     },
-    async makeRequest(resource: string, method: string = 'GET', requestBody?: any): Promise<any> {
+    async makeRequest(resource: string, method: HttpMethod = 'GET', requestBody?: any): Promise<any> {
         try {
             const response = await axios({
                     url: this._baseUrl + resource,
